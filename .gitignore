@@ -1,0 +1,64 @@
+# ===
+=======================================
+# Agentes de IA, Vibe Coding y OpenSpec
+# ==========================================
+.claude/
+.claude
+.gemini/
+.gemini
+openspec/
+.openspec/
+
+# ==========================================
+# Sistema Operativo y Archivos Temporales
+# ==========================================
+# macOS (por si alguien más clona tu repo en Mac)
+.DS_Store
+.AppleDouble
+.LSOverride
+
+# Windows
+Thumbs.db
+ehthumbs.db
+Desktop.ini
+
+# Linux (Archivos de respaldo y basura de gestores de ventanas)
+*~
+.directory
+
+# ==========================================
+# Editores de Código e IDEs
+# ==========================================
+# VS Code
+.vscode/
+*.code-workspace
+
+# Vim / Emacs
+*.swp
+*.swo
+*#
+
+# JetBrains (WebStorm, IntelliJ)
+.idea/
+
+# ==========================================
+# Python (Si usas 'python3 -m http.server' para pruebas locales)
+# ==========================================
+__pycache__/
+*.py[cod]
+*$py.class
+.venv/
+env/
+
+# ==========================================
+# Node.js (Por si a futuro decides usar npm o empaquetadores)
+# ==========================================
+node_modules/
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+
+# ==========================================
+# Logs generales
+# ==========================================
+*.log

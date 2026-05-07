@@ -1,0 +1,152 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Softwaer</title>
+  <script src="https://cdn.jsdelivr.net/pyodide/v0.26.1/full/pyodide.js"></script>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&family=Fira+Code:wght@400;500&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="style.css">
+  <script src="script.js" defer></script>
+</head>
+<body>
+
+  <div id="loading-screen">
+    <div class="ls-spinner"></div>
+    <p id="ls-text">Initializing Silicon Kernel &amp; Wasm Runtime...</p>
+  </div>
+
+  <header>
+    <div class="container">
+      <h1>La Evolución del Hardware y el Software</h1>
+    </div>
+  </header>
+
+  <section id="intro">
+    <div class="container">
+      <p>
+        A mediados del siglo XX, programar una computadora significaba perforar filas de agujeros en cartulinas rígidas. Cada tarjeta perforada representaba una instrucción en lenguaje máquina —una secuencia de unos y ceros que el hardware interpretaba directamente como señales eléctricas—. Las computadoras de esa era, como el ENIAC o el IBM 704, ocupaban salas enteras y debían recablearse físicamente para cambiar su comportamiento. El programador no solo diseñaba algoritmos: era también electricista, operador y técnico de mantenimiento.
+      </p>
+      <p>
+        La llegada del transistor y, más tarde, del circuito integrado transformó radicalmente esta realidad. El lenguaje ensamblador permitió por primera vez escribir instrucciones en mnemonics legibles por humanos (<code>MOV AX, 1</code> en lugar de <code>10110000 00000001</code>), y los primeros compiladores —como FORTRAN en 1957— abrieron la puerta a un nivel de abstracción sin precedentes. Ya no era necesario conocer la arquitectura exacta del procesador para resolver un problema matemático; el compilador traducía el código de alto nivel a instrucciones de máquina de forma automática, inaugurando la era del software como disciplina independiente del hardware.
+      </p>
+      <p>
+        Hoy, lenguajes como Python llevan esa abstracción al extremo: con una línea de código se puede entrenar un modelo de inteligencia artificial, procesar millones de registros o construir un servidor web. Pero bajo esa simplicidad existe todavía la misma cadena de transformaciones que en los años cincuenta: el código fuente se convierte en instrucciones, las instrucciones en señales eléctricas, y esas señales en cálculos realizados por transistores que conmutan a velocidades de gigahertz. Comprender ese viaje —de lo humano a lo eléctrico— es comprender la esencia de la computación moderna.
+      </p>
+    </div>
+  </section>
+
+  <section id="terminal-animacion">
+    <div class="container">
+      <h2>Simulador de Terminal</h2>
+      <div class="two-col">
+
+        <div class="terminal-panel">
+          <div class="terminal-titlebar">
+            <span class="dot dot-red"></span>
+            <span class="dot dot-yellow"></span>
+            <span class="dot dot-green"></span>
+            <span class="title">Python3</span>
+          </div>
+          <div class="quick-actions-bar">
+            <button class="btn-snippet" id="btn-esfera">Volumen Esfera</button>
+            <button class="btn-snippet" id="btn-ast">Inspector AST</button>
+            <button class="btn-snippet" id="btn-fib">Fibonacci (Recursión)</button>
+          </div>
+          <div id="terminal-output" role="log" aria-live="polite">
+            <div class="line" style="color:#4b5563">Python 3.12 (Pyodide WebAssembly)</div>
+            <div class="line" style="color:#4b5563">Type "help", "copyright", "credits" or "license" for more information.</div>
+            <div class="line"><span class="prompt-python">&gt;&gt;&gt;</span> <span style="color:#a7f3d0">print('Hola, mundo')</span></div>
+            <div class="line" style="color:#4b5563">Hola, mundo</div>
+          </div>
+          <!-- <div id="terminal-output" role="log" aria-live="polite">
+            <div class="line"><span class="prompt-user">leonardo</span><span class="prompt-at">@</span><span class="prompt-host">Leo</span><span class="prompt-sep">:</span><span class="prompt-path">~</span><span class="prompt-dollar">$</span> <span style="color:#a7f3d0">python3 --version</span></div>
+            <div class="line" style="color:#4b5563">Python 3.13.0</div>
+            <div class="line"><span class="prompt-user">leonardo</span><span class="prompt-at">@</span><span class="prompt-host">Leo</span><span class="prompt-sep">:</span><span class="prompt-path">~</span><span class="prompt-dollar">$</span> <span style="color:#a7f3d0">python3 -c "print('Hola, mundo')"</span></div>
+            <div class="line" style="color:#4b5563">Hola, mundo</div>
+          </div> -->
+          <!-- <div class="terminal-input-row">
+            <span class="prompt-user">leonardo</span><span class="prompt-at">@</span><span class="prompt-host">Leo</span><span class="prompt-sep">:</span><span class="prompt-path">~</span><span class="prompt-dollar">$</span>
+            <input
+              type="text"
+              id="terminal-input"
+              autocomplete="off"
+              autocorrect="off"
+              spellcheck="false"
+              aria-label="Entrada de código"
+              placeholder="escribe un comando…"
+              disabled
+            >
+          </div> -->
+          <div class="terminal-input-row">
+            <span class="prompt-python">&gt;&gt;&gt;</span>
+            <input
+              type="text"
+              id="terminal-input"
+              autocomplete="off"
+              autocorrect="off"
+              spellcheck="false"
+              aria-label="Entrada de código"
+              placeholder="escribe un comando…"
+              disabled
+            >
+          </div>
+        </div>
+
+        <div id="hardware-canvas">
+          <div class="hw-row">
+            <div id="hw-bytecode" class="hw-panel">
+              <span class="hw-label">C / Bytecode</span>
+              <div class="hw-content"></div>
+            </div>
+            <div id="hw-binary" class="hw-panel">
+              <span class="hw-label">Binario</span>
+              <div class="hw-content"></div>
+            </div>
+          </div>
+          <div id="hw-core" class="hw-panel hw-panel--center">
+            <span class="hw-label">Core Físico</span>
+            <div class="hw-content"></div>
+          </div>
+          <div id="memory-simulator">
+            <div class="mem-diagram">
+              <div class="mem-block">CPU Core</div>
+              <div class="mem-block">L1 Cache</div>
+              <div class="mem-block">L2</div>
+              <div class="mem-block">L3</div>
+              <div class="mem-block">RAM</div>
+            </div>
+            <div class="mem-controls">
+              <div class="sim-toggle-row">
+                <label class="sim-switch" for="sim-toggle">
+                  <input type="checkbox" id="sim-toggle">
+                  <span class="sim-slider"></span>
+                </label>
+                <span class="sim-label">Simular Latencia de Red (Cache Miss Force)</span>
+                <span id="timer-display"></span>
+              </div>
+            </div>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <section id="explicacion">
+    <div class="container">
+      <div id="analisis-dinamico"><p class="analisis-placeholder">Ejecuta una expresión en la terminal para ver el análisis en vivo.</p></div>
+    </div>
+  </section>
+
+  <footer>
+    <div class="container">
+      <p>Desarrollado por <strong style="color:var(--color-text)">Leonardo</strong> &mdash; Proyecto Universitario, 2025</p>
+      <p class="disclaimer">Página generada con asistencia de Inteligencia Artificial.</p>
+    </div>
+  </footer>
+
+</body>
+</html>
