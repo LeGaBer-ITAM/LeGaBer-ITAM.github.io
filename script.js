@@ -5,7 +5,6 @@ let pyodide = null;
 async function initKernel() {
   try {
     pyodide = await loadPyodide();
-    await pyodide.loadPackage("numpy");
     document.getElementById('loading-screen').style.display = 'none';
     const inp = document.getElementById('terminal-input');
     inp.disabled = false;
